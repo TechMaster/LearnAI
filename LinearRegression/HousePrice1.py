@@ -30,7 +30,7 @@ print(f"Score = {score * 100}%")
 
 fig = plt.figure(figsize=(10, 8))
 ax = fig.add_subplot(111, projection='3d')
-ax.scatter3D(X["Dien tich"], X["1/Khoang Cach"], Y, c=['b'], marker='o')
+ax.scatter3D(X["# Dien tich"], X["1/Khoang Cach"], Y, c=['b'], marker='o')
 
 ax.set_xlabel('Diện tích')
 ax.set_ylabel('1 / Khoảng cách ')

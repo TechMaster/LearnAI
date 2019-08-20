@@ -6,7 +6,7 @@ X2 = 1 / np.random.uniform(0.5, 20, N)  # Nghịch đảo khoảng cách tính t
 
 w1 = 25.5
 w2 = 3000
-Price = w1 * X1 + w2 * X2 + np.random.normal(0, 10, N) # Hàm tính giá nhà có thêm ít nhiễu
+Price = w1 * X1 + w2 * X2 + np.random.normal(0, 100, N) # Hàm tính giá nhà có thêm ít nhiễu
 
 Data = np.hstack((X1.reshape(-1, 1), X2.reshape(-1, 1), Price.reshape(-1, 1)))
 
