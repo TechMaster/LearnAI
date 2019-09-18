@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hand Character Recognition</title>
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/atrament.min.js"></script>
+</head>
+<body>
+<h1>Number Recognition</h1>
+<p>
+    <button id="btnClear" onclick="clearSketcher();">Xoá</button>&nbsp;
+    <button id="btnPredict" onclick="predictOnServer();">Dự đoán</button>
+</p>
+
+<canvas id="sketcher" width="224px" height="224px" />
+
+<script>
+    $(document).ready(function() {
+        clearSketcher();
+    });
+
+    function clearSketcher() {
+        var canvas = $("#sketcher")[0];
+        var sketcher = atrament('#sketcher', canvas.width, canvas.height, 'white');
+        sketcher.clear();
+        sketcher.weight = 15;
+
+        var ctx = canvas.getContext("2d");
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function predictOnServer() {
+        //https://stackoverflow.com/questions/13198131/how-to-save-an-html5-canvas-as-an-image-on-a-server
+        var canvas = $("#sketcher")[0];
+        var dataURL = canvas.toDataURL();
+        $.ajax({
+            type: "POST",
+            url: "/upload",
+            data: {
+                imgBase64: dataURL
+            }
+        }).done(function(o) {
+            console.log(o);
+        });
+    }
+</script>
+</body>
+</html>

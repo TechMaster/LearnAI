@@ -6,7 +6,6 @@ from keras.layers.core import Dense, Activation
 from keras import optimizers
 
 
-
 # 1. create pseudo data y = 2*x0 + 3*x1 + 4
 X = np.random.rand(100, 2)
 y = 2 * X[:, 0] + 3 * X[:, 1] + 4 + .2 * np.random.randn(100)  # noise added

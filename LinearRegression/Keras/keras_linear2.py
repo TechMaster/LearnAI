@@ -10,7 +10,7 @@ from tensorflow.keras import layers
 print(tf.__version__)
 
 # 1. create pseudo data y = 2*x0 + 3*x1 + 4
-X = np.random.rand(200, 2)
+X = np.random.rand(200, 2) # Tạo 200 hàng, 2 cột số ngẫu n 0..1.0
 
 
 def generate_output(input):
@@ -25,9 +25,9 @@ y = generate_output(X)
 
 
 # 2. Build model
-def build_model():
+def build_model(num_features):
     model = keras.Sequential([
-        layers.Dense(10, activation='linear', input_shape=(2,)),
+        layers.Dense(5, activation='linear', input_shape=(num_features,)),
         layers.Dense(1)
     ])
 
@@ -39,7 +39,7 @@ def build_model():
     return model
 
 
-model = build_model()
+model = build_model(np.shape(X)[1])
 
 print(model.summary())
 
@@ -47,7 +47,7 @@ print(model.summary())
 early_stop = keras.callbacks.EarlyStopping(monitor='val_loss', patience=10)
 
 # 4. Train the model
-history = model.fit(X, y, epochs=1000, batch_size=32,
+history = model.fit(X, y, epochs=1000, batch_size=2,
                     validation_split=0.2, verbose=2, callbacks=[early_stop])
 
 fig = plt.figure(figsize=(16, 8))
